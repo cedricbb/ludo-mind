@@ -21,3 +21,11 @@ export class NetworkError extends Error {
     this.name = 'NetworkError'
   }
 }
+
+export class NotFoundError extends Error {
+  readonly code = 'NOT_FOUND'
+  constructor(message = 'Resource not found') {
+    super(message)
+    this.name = 'NotFoundError'
+  }
+}
