@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "ludo-mind",
+    "slug": "ludo-mind",
+    "version": "1.0.0",
+    "scheme": "ludo-mind",
+    "platforms": ["ios", "android"],
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
