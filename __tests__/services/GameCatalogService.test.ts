@@ -4,6 +4,7 @@ jest.mock('../../lib/supabase', () => ({
 
 import { GameCatalogService } from '../../services/GameCatalogService'
 import { supabase } from '../../lib/supabase'
+import { NotFoundError } from '../../lib/errors'
 
 const mockFrom = supabase.from as jest.Mock
 
@@ -51,5 +52,45 @@ describe('GameCatalogService.search', () => {
     mockFrom.mockReturnValue({ select: mockSelect })
 
     await expect(GameCatalogService.search('skull')).rejects.toThrow()
+  })
+})
+
+describe('GameCatalogService.getById', () => {
+  beforeEach(() => jest.clearAllMocks())
+
+  it('returns a Game when found', async () => {
+    const mockEq = jest.fn().mockResolvedValue({ data: [mockGame], error: null })
+    const mockSelect = jest.fn().mockReturnValue({ eq: mockEq })
+    mockFrom.mockReturnValue({ select: mockSelect })
+
+    const result = await GameCatalogService.getById(mockGame.id)
+
+    expect(mockFrom).toHaveBeenCalledWith('games')
+    expect(mockEq).toHaveBeenCalledWith('id', mockGame.id)
+    expect(result.title).toBe('Skull King')
+  })
+
+  it('throws NotFoundError when data is empty', async () => {
+    const mockEq = jest.fn().mockResolvedValue({ data: [], error: null })
+    const mockSelect = jest.fn().mockReturnValue({ eq: mockEq })
+    mockFrom.mockReturnValue({ select: mockSelect })
+
+    await expect(GameCatalogService.getById(mockGame.id)).rejects.toThrow(NotFoundError)
+  })
+
+  it('throws NotFoundError when data is null', async () => {
+    const mockEq = jest.fn().mockResolvedValue({ data: null, error: null })
+    const mockSelect = jest.fn().mockReturnValue({ eq: mockEq })
+    mockFrom.mockReturnValue({ select: mockSelect })
+
+    await expect(GameCatalogService.getById(mockGame.id)).rejects.toThrow(NotFoundError)
+  })
+
+  it('throws on supabase error', async () => {
+    const mockEq = jest.fn().mockResolvedValue({ data: null, error: { message: 'DB error' } })
+    const mockSelect = jest.fn().mockReturnValue({ eq: mockEq })
+    mockFrom.mockReturnValue({ select: mockSelect })
+
+    await expect(GameCatalogService.getById(mockGame.id)).rejects.toThrow('DB error')
   })
 })
