@@ -19,13 +19,11 @@ export default function GameDetailScreen() {
 
   const gameId = parsed.data
 
-  const { data: games = [], isLoading } = useQuery({
+  const { data: game, isLoading } = useQuery({
     queryKey: queryKeys.gameDetail(gameId),
-    queryFn: () => GameCatalogService.search(gameId),
+    queryFn: () => GameCatalogService.getById(gameId),
     staleTime: 300_000,
   })
-
-  const game = games[0]
   const { games: libraryGames, addGame } = useLibrary()
   const alreadyAdded = libraryGames.some(ug => ug.game_id === gameId)
 
@@ -57,14 +55,14 @@ export default function GameDetailScreen() {
         <Text style={styles.title}>{game.title}</Text>
 
         <View style={styles.badges}>
-          <View testID="badge-scoring-family" style={styles.badge}>
+          <View testID="badge-scoring-family" style={[styles.badge, styles.badgeScoringFamily]}>
             <Text style={styles.badgeText}>{game.scoring_family}</Text>
           </View>
-          {game.rules_indexed && (
-            <View testID="badge-rules-indexed" style={styles.badge}>
-              <Text style={styles.badgeText}>Rules ✓</Text>
-            </View>
-          )}
+          <View testID="badge-rules-indexed" style={styles.badge}>
+            <Text style={[styles.badgeText, { color: game.rules_indexed ? DS.secondary : DS.onSurfaceVariant }]}>
+              {game.rules_indexed ? 'Oracle disponible' : 'Non indexé'}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.meta}>
@@ -102,7 +100,8 @@ const styles = StyleSheet.create({
     backgroundColor: DS.surfaceContainerHigh, paddingHorizontal: 12,
     paddingVertical: 6, borderRadius: 20,
   },
-  badgeText: { color: DS.primary, fontSize: 12, fontWeight: '600', textTransform: 'capitalize' },
+  badgeScoringFamily: { backgroundColor: DS.surfaceContainerHighest },
+  badgeText: { color: DS.secondary, fontSize: 12, fontWeight: '600', textTransform: 'capitalize' },
   meta: { flexDirection: 'row', gap: 16, marginBottom: 16 },
   metaText: { color: DS.onSurfaceVariant, fontSize: 14 },
   description: { color: DS.onSurface, fontSize: 14, lineHeight: 22, marginBottom: 24 },

@@ -64,6 +64,19 @@ describe('LibraryScreen', () => {
     expect(router.push).toHaveBeenCalledWith('/library/search')
   })
 
+  it('renders header title Your Vault and subtitle with game count', () => {
+    mockUseLibrary.mockReturnValue({
+      games: [mockUserGame],
+      isLoading: false,
+      addGame: jest.fn(),
+      removeGame: jest.fn(),
+    })
+
+    const { getByText } = render(<LibraryScreen />, { wrapper: makeWrapper() })
+    expect(getByText('Your Vault')).toBeTruthy()
+    expect(getByText('Commanding 1 titles across the multiverse.')).toBeTruthy()
+  })
+
   it('shows GhostAddCard at end when games exist', () => {
     mockUseLibrary.mockReturnValue({
       games: [mockUserGame, { ...mockUserGame, id: 'other' }],

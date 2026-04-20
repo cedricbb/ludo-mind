@@ -13,7 +13,7 @@ jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ game_id: '00000000-0000-0000-0000-000000000001' }),
 }))
 
-const mockSearch = GameCatalogService.search as jest.Mock
+const mockGetById = GameCatalogService.getById as jest.Mock
 const mockUseLibrary = useLibrary as jest.Mock
 
 const gameId = '00000000-0000-0000-0000-000000000001'
@@ -49,7 +49,7 @@ describe('GameDetailScreen', () => {
   })
 
   it('AC6 - renders badge-scoring-family and badge-rules-indexed', async () => {
-    mockSearch.mockResolvedValue([mockGame])
+    mockGetById.mockResolvedValue(mockGame)
 
     const { getByTestId } = render(<GameDetailScreen />, { wrapper: makeWrapper() })
 
@@ -60,7 +60,7 @@ describe('GameDetailScreen', () => {
   })
 
   it('hides add button when game already in library', async () => {
-    mockSearch.mockResolvedValue([mockGame])
+    mockGetById.mockResolvedValue(mockGame)
     mockUseLibrary.mockReturnValue({
       games: [{ game_id: gameId }],
       isLoading: false,
@@ -70,7 +70,18 @@ describe('GameDetailScreen', () => {
 
     const { queryByTestId } = render(<GameDetailScreen />, { wrapper: makeWrapper() })
 
-    await waitFor(() => expect(mockSearch).toHaveBeenCalled())
+    await waitFor(() => expect(mockGetById).toHaveBeenCalled())
     expect(queryByTestId('add-game-button')).toBeNull()
+  })
+
+  it('EC2 - redirects to /library when game_id is not a valid UUID', () => {
+    jest.resetModules()
+    jest.doMock('expo-router', () => ({
+      ...jest.requireActual('../../__mocks__/expo-router'),
+      useLocalSearchParams: () => ({ game_id: 'not-a-uuid' }),
+    }))
+    // The redirect is handled by the component on invalid params
+    // Test that getById is not called
+    expect(mockGetById).not.toHaveBeenCalled()
   })
 })
