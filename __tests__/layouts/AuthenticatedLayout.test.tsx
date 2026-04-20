@@ -4,7 +4,7 @@ import { render, act } from '@testing-library/react-native'
 jest.mock('../../hooks/useSession')
 jest.mock('expo-router')
 
-import { useSession } from '../../hooks/useSession'
+import { useSession } from '@/hooks/useSession'
 import { router } from 'expo-router'
 import AuthenticatedLayout from '../../app/(authenticated)/_layout'
 

@@ -1,8 +1,8 @@
 import { renderHook, act, waitFor } from '@testing-library/react-native'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useLibrary } from '../../hooks/useLibrary'
-import { UserLibraryService } from '../../services/UserLibraryService'
+import { useLibrary } from '@/hooks/useLibrary'
+import { UserLibraryService } from '@/services/UserLibraryService'
 
 jest.mock('../../lib/supabase', () => ({ supabase: { from: jest.fn(), auth: {} } }))
 jest.mock('../../services/UserLibraryService')

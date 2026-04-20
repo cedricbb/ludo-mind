@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent, act, waitFor } from '@testing-library/react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import SearchScreen from '../../app/(authenticated)/library/search'
-import { GameCatalogService } from '../../services/GameCatalogService'
+import { GameCatalogService } from '@/services/GameCatalogService'
 
 jest.mock('../../lib/supabase', () => ({ supabase: { from: jest.fn(), auth: {} } }))
 jest.mock('../../services/GameCatalogService')

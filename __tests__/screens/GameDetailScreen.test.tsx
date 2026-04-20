@@ -31,8 +31,10 @@ const mockGame = {
   created_at: '2024-01-01T00:00:00.000Z',
 }
 
+let queryClient: QueryClient
+
 function makeWrapper() {
-  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+  queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0 } } })
   return ({ children }: { children: React.ReactNode }) =>
     React.createElement(QueryClientProvider, { client: queryClient }, children)
 }
@@ -46,6 +48,10 @@ describe('GameDetailScreen', () => {
       addGame: jest.fn(),
       removeGame: jest.fn(),
     })
+  })
+
+  afterEach(() => {
+    queryClient?.clear()
   })
 
   it('AC6 - renders badge-scoring-family and badge-rules-indexed', async () => {

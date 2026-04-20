@@ -2,8 +2,8 @@ import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import LibraryScreen from '../../app/(authenticated)/library/index'
-import { useLibrary } from '../../hooks/useLibrary'
-import { router } from '../../__mocks__/expo-router'
+import { useLibrary } from '@/hooks/useLibrary'
+import { router } from '@/__mocks__/expo-router'
 
 jest.mock('../../lib/supabase', () => ({ supabase: { from: jest.fn(), auth: {} } }))
 jest.mock('expo-secure-store')

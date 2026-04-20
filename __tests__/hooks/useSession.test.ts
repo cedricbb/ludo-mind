@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-native'
-import { useSession } from '../../hooks/useSession'
+import { useSession } from '@/hooks/useSession'
 
 jest.mock('../../lib/supabase', () => ({
   supabase: {

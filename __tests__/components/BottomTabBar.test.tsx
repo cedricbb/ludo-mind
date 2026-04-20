@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react-native'
-import { BottomTabBar, TABS } from '../../components/layout/BottomTabBar'
+import { BottomTabBar, TABS } from '@/components/layout/BottomTabBar'
 
 describe('BottomTabBar', () => {
   it('renders 4 tabs: Home, Oracle, Scanner, Library', () => {
