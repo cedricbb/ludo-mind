@@ -10,4 +10,11 @@ export const DS = {
   onSurfaceVariant: '#aba9bd',
   outlineVariant: '#474657',
   surfaceContainerHighest: '#252538',
+  surface: '#1a1a27',
+  surfaceBright: '#2a2a3d',
+  surfaceContainerLowest: '#0a0a12',
+  glassPanel: 'rgba(36,36,51,0.6)',
+  shadowPurple: 'rgba(124,77,255,0.08)',
+  primaryGradientStart: '#a68cff',
+  primaryGradientEnd: '#7c4dff',
 } as const
