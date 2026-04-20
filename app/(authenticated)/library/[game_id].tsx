@@ -78,7 +78,7 @@ export default function GameDetailScreen() {
           <TouchableOpacity
             testID="add-game-button"
             style={styles.addButton}
-            onPress={() => addGame(gameId)}
+            onPress={() => addGame(gameId).then(() => router.back())}
           >
             <Text style={styles.addButtonText}>Ajouter</Text>
           </TouchableOpacity>

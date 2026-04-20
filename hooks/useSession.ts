@@ -38,10 +38,18 @@ export function useSession(): { session: Session | null; isLoading: boolean } {
             user: parsed.user,
           }
           await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(refreshed))
+          await supabase.auth.setSession({
+            access_token: refreshed.access_token,
+            refresh_token: refreshed.refresh_token,
+          })
           if (!cancelled) setSession(SessionSchema.parse(refreshed))
           return
         }
 
+        await supabase.auth.setSession({
+          access_token: parsed.access_token,
+          refresh_token: parsed.refresh_token,
+        })
         if (!cancelled) setSession(parsed)
       } catch {
         if (!cancelled) setSession(null)

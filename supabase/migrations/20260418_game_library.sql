@@ -33,5 +33,8 @@ alter table user_games enable row level security;
 create policy "Games readable by all authenticated" on games
   for select to authenticated using (true);
 
+create policy "Games readable by anon" on games
+  for select to anon using (true);
+
 create policy "User games owned by user" on user_games
   for all to authenticated using (auth.uid() = user_id);

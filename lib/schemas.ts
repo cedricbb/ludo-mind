@@ -6,7 +6,7 @@ export const UserSchema = z.object({
   display_name: z.string(),
   avatar_url: z.string().url().nullable(),
   plan: z.enum(['free', 'premium']),
-  created_at: z.string().datetime(),
+  created_at: z.string().datetime({ offset: true }),
 })
 
 export const SessionSchema = z.object({
@@ -56,7 +56,7 @@ export const GameSchema = z.object({
   category: z.string(),
   scoring_family: z.enum(['standard', 'positional', 'elimination', 'cooperative', 'contract_tricks', 'incremental', 'custom']),
   rules_indexed: z.boolean(),
-  created_at: z.string().datetime(),
+  created_at: z.string().datetime({ offset: true }),
   bgg_id: z.number().int().nullable().optional(),
   publisher: z.string().nullable().optional(),
   bgg_rating: z.number().nullable().optional(),
@@ -68,8 +68,8 @@ export const UserGameSchema = z.object({
   id: z.string().uuid(),
   user_id: z.string().uuid(),
   game_id: z.string().uuid(),
-  added_at: z.string().datetime(),
-  last_played_at: z.string().datetime().nullable(),
+  added_at: z.string().datetime({ offset: true }),
+  last_played_at: z.string().datetime({ offset: true }).nullable(),
   play_count: z.number().int().min(0),
   game: GameSchema,
 })
@@ -102,7 +102,7 @@ export const RoundSchema = z.object({
   session_id: z.string().uuid(),
   round_number: z.number().int().positive(),
   results: z.array(RoundResultSchema),
-  created_at: z.string().datetime(),
+  created_at: z.string().datetime({ offset: true }),
 })
 export type Round = z.infer<typeof RoundSchema>
 
@@ -124,8 +124,8 @@ export const GameSessionSchema = z.object({
   players: z.array(PlayerSchema),
   rounds: z.array(RoundSchema),
   final_scores: z.array(FinalScoreSchema).nullable(),
-  created_at: z.string().datetime(),
-  ended_at: z.string().datetime().nullable(),
+  created_at: z.string().datetime({ offset: true }),
+  ended_at: z.string().datetime({ offset: true }).nullable(),
 })
 export type GameSession = z.infer<typeof GameSessionSchema>
 
@@ -133,7 +133,7 @@ export const RoundListItemSchema = z.object({
   id: z.string().uuid(),
   session_id: z.string().uuid(),
   round_number: z.number().int().positive(),
-  created_at: z.string().datetime(),
+  created_at: z.string().datetime({ offset: true }),
 })
 export type RoundListItem = z.infer<typeof RoundListItemSchema>
 
@@ -145,8 +145,8 @@ export const GameSessionListItemSchema = z.object({
   players: z.array(PlayerSchema),
   rounds: z.array(RoundListItemSchema),
   final_scores: z.array(FinalScoreSchema).nullable(),
-  created_at: z.string().datetime(),
-  ended_at: z.string().datetime().nullable(),
+  created_at: z.string().datetime({ offset: true }),
+  ended_at: z.string().datetime({ offset: true }).nullable(),
 })
 export type GameSessionListItem = z.infer<typeof GameSessionListItemSchema>
 
