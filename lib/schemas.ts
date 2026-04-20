@@ -54,9 +54,13 @@ export const GameSchema = z.object({
   max_players: z.number().int().positive(),
   cover_url: z.string().url().nullable(),
   category: z.string(),
-  scoring_family: z.enum(['standard', 'positional', 'elimination', 'cooperative']),
+  scoring_family: z.enum(['standard', 'positional', 'elimination', 'cooperative', 'contract_tricks', 'incremental', 'custom']),
   rules_indexed: z.boolean(),
   created_at: z.string().datetime(),
+  bgg_id: z.number().int().nullable().optional(),
+  publisher: z.string().nullable().optional(),
+  bgg_rating: z.number().nullable().optional(),
+  bgg_rank: z.number().int().nullable().optional(),
 })
 export type Game = z.infer<typeof GameSchema>
 
