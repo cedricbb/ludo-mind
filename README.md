@@ -56,7 +56,7 @@ Appliquer le schema de base de donnees :
 supabase db push
 ```
 
-Le fichier `supabase/migrations/20260418_game_library.sql` cree les tables `games` et `user_games` avec leurs politiques RLS.
+Le fichier `supabase/migrations/20260418_game_library.sql` active l'extension `pg_trgm` et cree les tables `games` et `user_games` avec leurs politiques RLS.
 
 ### Lancement
 
@@ -111,7 +111,7 @@ ludo-mind/
   services/
     AuthService.ts             # Inscription, connexion, deconnexion
     ProfileService.ts          # Lecture/mise a jour profil (avec cache offline)
-    GameCatalogService.ts      # Recherche plein texte dans le catalogue de jeux
+    GameCatalogService.ts      # Recherche plein texte et consultation par ID dans le catalogue
     UserLibraryService.ts      # Gestion de la collection utilisateur (ajout, retrait, compteur)
   supabase/
     migrations/
@@ -145,7 +145,7 @@ ludo-mind/
 | Profil utilisateur | Implemente | Affichage email, badge plan (free/premium), edition display_name et avatar_url |
 | Cache offline profil | Implemente | Fallback AsyncStorage si erreur reseau |
 | Deconnexion | Implemente | Nettoyage SecureStore + signOut Supabase |
-| Catalogue de jeux | Implemente | Recherche plein texte (index GIN trigram PostgreSQL) |
+| Catalogue de jeux | Implemente | Recherche plein texte (index GIN trigram PostgreSQL), consultation par ID |
 | Bibliotheque personnelle | Implemente | Ajout/retrait de jeux, suivi du nombre de parties jouees |
 | Filtrage local | Implemente | Filtre cote client sur la collection |
 | Detail d'un jeu | Implemente | Titre, description, scoring family, nombre de joueurs, badge regles |
@@ -157,13 +157,13 @@ ludo-mind/
 <!-- SECTION:test-coverage -->
 ## Couverture de tests
 
-12 suites de tests, 46 tests — tous passent.
+12 suites de tests, 52 tests — tous passent.
 
 | Suite | Fichier | Domaine |
 |-------|---------|---------|
 | AuthService | `__tests__/services/AuthService.test.ts` | Inscription, connexion, deconnexion |
 | ProfileService | `__tests__/services/ProfileService.test.ts` | Lecture/mise a jour profil, cache offline |
-| GameCatalogService | `__tests__/services/GameCatalogService.test.ts` | Recherche de jeux par titre |
+| GameCatalogService | `__tests__/services/GameCatalogService.test.ts` | Recherche de jeux par titre, consultation par ID |
 | UserLibraryService | `__tests__/services/UserLibraryService.test.ts` | Collection utilisateur (ajout, retrait, lecture) |
 | useSession | `__tests__/hooks/useSession.test.ts` | Restauration session, rafraichissement JWT |
 | useLibrary | `__tests__/hooks/useLibrary.test.ts` | Requetes bibliotheque, mutations, invalidation cache |
