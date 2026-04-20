@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+  <item rank="1" id="92415">
+    <name value="Skull"/>
+    <thumbnail value="//cf.geekdo-images.com/skull-thumb.jpg"/>
+  </item>
+  <item rank="2" id="150145">
+    <name value="Skull King"/>
+    <thumbnail value="//cf.geekdo-images.com/skull-king-thumb.jpg"/>
+  </item>
+</items>

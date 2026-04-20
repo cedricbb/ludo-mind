@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items total="2" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse" pageindex="1" page="1">
+  <item type="boardgame" id="92415">
+    <name type="primary" sortindex="1" value="Skull"/>
+    <yearpublished value="2011"/>
+  </item>
+  <item type="boardgame" id="150145">
+    <name type="primary" sortindex="1" value="Skull King"/>
+    <yearpublished value="2013"/>
+  </item>
+</items>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+  <item type="boardgame" id="92415">
+    <name type="primary" sortindex="1" value="Skull"/>
+    <name type="alternate" sortindex="1" value="Skull Alt"/>
+    <minplayers value="2"/>
+    <maxplayers value="6"/>
+    <thumbnail>https://cf.geekdo-images.com/skull-thumb.jpg</thumbnail>
+    <link type="boardgamepublisher" id="23" value="Asmodee"/>
+    <link type="boardgamecategory" id="1002" value="Card Game"/>
+    <link type="boardgamemechanic" id="2070" value="Bluffing"/>
+    <statistics page="1">
+      <ratings>
+        <average value="7.23"/>
+        <ranks>
+          <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="348" bayesaverage="7.12"/>
+        </ranks>
+      </ratings>
+    </statistics>
+  </item>
+  <item type="boardgame" id="150145">
+    <name type="primary" sortindex="1" value="Skull King"/>
+    <minplayers value="2"/>
+    <maxplayers value="8"/>
+    <thumbnail>https://cf.geekdo-images.com/skull-king-thumb.jpg</thumbnail>
+    <link type="boardgamepublisher" id="19562" value="Grandpa Beck's Games"/>
+    <link type="boardgamemechanic" id="2041" value="Trick-taking"/>
+    <link type="boardgamemechanic" id="2663" value="Hand Management"/>
+    <statistics page="1">
+      <ratings>
+        <average value="7.56"/>
+        <ranks>
+          <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="512" bayesaverage="7.34"/>
+        </ranks>
+      </ratings>
+    </statistics>
+  </item>
+</items>
