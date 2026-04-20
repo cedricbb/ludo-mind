@@ -35,7 +35,7 @@ export default function LibraryScreen() {
         </TouchableOpacity>
         <TouchableOpacity
           testID="tab-history"
-          onPress={() => setActiveTab('history')}
+          onPress={() => router.push('/session/history' as any)}
           style={[styles.tab, activeTab === 'history' && styles.tabActive]}
         >
           <Text style={[styles.tabText, activeTab === 'history' && styles.tabTextActive]}>

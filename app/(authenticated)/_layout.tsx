@@ -15,6 +15,7 @@ const TAB_ROUTES: Record<string, string> = {
 
 function activeKeyFromPath(pathname: string): string {
   if (pathname.startsWith('/library')) return 'library'
+  if (pathname.startsWith('/session')) return 'home'
   return 'home'
 }
 
