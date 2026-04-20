@@ -1,7 +1,8 @@
 export class ConflictError extends Error {
-  readonly code = 'EMAIL_CONFLICT'
-  constructor(message = 'Email already in use') {
+  readonly code: string
+  constructor(code = 'EMAIL_CONFLICT', message = 'Conflict error') {
     super(message)
+    this.code = code
     this.name = 'ConflictError'
   }
 }

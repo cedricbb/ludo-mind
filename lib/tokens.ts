@@ -9,4 +9,5 @@ export const DS = {
   onSurface: '#e6e3f8',
   onSurfaceVariant: '#aba9bd',
   outlineVariant: '#474657',
+  surfaceContainerHighest: '#252538',
 } as const
